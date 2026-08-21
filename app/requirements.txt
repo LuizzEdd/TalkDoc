@@ -1,0 +1,11 @@
+pymupdf
+dotenv
+langchain
+langchain-google-genai
+langchain-chroma
+langchain-text-splitters
+fastapi
+python-multipart
+uvicorn
+pydantic-settings
+pandas
