@@ -109,3 +109,72 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  color: var(--text-h);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input[type="text"] {
+  font: inherit;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto 12px;
+}
+
+.form-row input[type="file"] {
+  flex: 1;
+  min-width: 0;
+}
+
+input[type="text"]::placeholder {
+  color: var(--text);
+}
+
+input[type="file"]::file-selector-button {
+  font: inherit;
+  font-weight: 600;
+  color: var(--text-h);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-right: 12px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--accent);
+  color: #fff;
+}

@@ -16,7 +16,7 @@ const UploadForm = ({uploadDocument}) => {
     };
 
     return (
-        <form onSubmit = {handleSubmit}>
+        <form onSubmit = {handleSubmit} className="form-row">
             <input
             type = "file"
             accept = "application/pdf"

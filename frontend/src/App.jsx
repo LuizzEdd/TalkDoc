@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import DocumentUpload from "./assets/components/DocumentUpload";
-import ChatWindow from './assets/components/ChatWindow';
+import DocumentUpload from './components/DocumentUpload';
+import ChatWindow from './components/ChatWindow';
 
 const App = () => {
   const [documentId, setDocumentId] = useState(null);

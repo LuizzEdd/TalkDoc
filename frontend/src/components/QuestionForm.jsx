@@ -12,7 +12,7 @@ const QuestionForm = ({askQuestion, disabled}) => {
     };
     
     return (
-        <form onSubmit = {handleSubmit}>
+        <form onSubmit = {handleSubmit} className="form-row">
             <input
                 type = 'text'
                 value = {question}
