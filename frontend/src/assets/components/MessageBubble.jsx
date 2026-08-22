@@ -8,9 +8,7 @@ const MessageBubble = ({message}) => {
             <p>{text}</p>
             {sources && sources.length > 0 && (
                 <div>
-                    {sources.map((s, i) => (
-                        <div key={i} className = 'source-tag'>{s}</div>
-                    ))}
+                    <p>Fontes: {sources.join(', ')}</p>
                 </div>
             )}
         </div>
