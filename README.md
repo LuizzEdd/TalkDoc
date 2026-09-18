@@ -171,15 +171,3 @@ Documentação interativa disponível em `http://localhost:8000/docs` (Swagger).
 - Não há testes automatizados no projeto.
 - `VITE_API_URL` está fixado como `http://localhost:8000` no `docker-compose.yml`, o que funciona para execução local, mas exigiria ajuste manual para outros ambientes (ex.: deploy).
 
-## Uso de IA no desenvolvimento
-
-Claude (Anthropic) foi utilizado ao longo de todo o desenvolvimento como ferramenta de apoio, incluindo:
-- Estruturação do backend em camadas (routers, services, schemas, core)
-- Definição da estratégia de isolamento de documentos no ChromaDB
-- Debugging de problemas específicos (formato de resposta do LangChain, CORS, sincronização de estado entre componentes React)
-- Organização dos componentes do frontend e fluxo de dados entre eles
-- Configuração do ambiente Docker
-- Estruturação deste README
-
-Todas as decisões de arquitetura, validação do funcionamento (incluindo testes manuais de isolamento entre documentos e de clone limpo) e ajustes finais permaneceram sob responsabilidade própria.
-
