@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, HTTPException
-from services import vectorize
+from services.vectorize import process_pdf, InvalidPDFError
 from core.config import settings
 import uuid
 
@@ -15,8 +15,12 @@ async def upload_document(file: UploadFile):
     file_path.write_bytes(await file.read())
 
     try:
-        vectorize.process_pdf(file_path, collection_name = document_id)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao processar o PDF: {str(e)}")
+        process_pdf(file_path, collection_name = document_id)
+    except InvalidPDFError as e:
+        file_path.unlink(missing_ok=True)
+        raise HTTPException(status_code=422, detail=str(e))
+    except Exception:
+        file_path.unlink(missing_ok=True)
+        raise HTTPException(status_code=500, detail="Erro interno ao processar o documento. Tente novamente.")
 
     return {"document_id": document_id, "status": "Documento carregado e processado com sucesso."}

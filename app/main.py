@@ -3,8 +3,11 @@ from routers import documents, chat
 from fastapi.middleware.cors import CORSMiddleware
 from core.config import settings
 import uvicorn
+from fastapi import Request
+from fastapi.responses import JSONResponse
+import logging
 
-app = FastAPI(title="Desafio - YAITEC")
+app = FastAPI(title="Projeto Talkdoc")
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,3 +19,13 @@ app.add_middleware(
 
 app.include_router(documents.router)
 app.include_router(chat.router)
+
+logger = logging.getLogger("talkdoc")
+
+@app.exception_handler(Exception)
+async def unhandled_exception_handler(request: Request, exc: Exception):
+    logger.exception("Erro não tratado") 
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Ocorreu um erro interno. Tente novamente mais tarde."}
+    )

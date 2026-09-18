@@ -19,7 +19,7 @@ class Settings(BaseSettings):
 
     CHUNK_SIZE: int = 500
     CHUNK_OVERLAP: int = 100
-    TOP_K: int = 3
+    TOP_K: int = 5
 
     class Config:
         env_file = BASE_DIR / "keys.env"

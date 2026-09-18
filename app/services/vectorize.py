@@ -5,18 +5,27 @@ from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import pymupdf
 
+
+class InvalidPDFError(Exception):
+    """Levantado quando o PDF não pode ser processado."""
+    pass
+
+
 def process_pdf(pdf_path, collection_name: str) -> None:
 
-    doc = pymupdf.open(pdf_path)
+    try:
+        doc = pymupdf.open(pdf_path)
+    except Exception:
+         raise InvalidPDFError("O arquivo enviado não pôde ser lido.")
+    if doc.page_count == 0:
+        raise InvalidPDFError("O PDF enviado não contém páginas.")
 
-    paginas = []
+    paginas = [{"page": p.number + 1, "text": p.get_text()} for p in doc]
+
+    if not any(p["text"].strip() for p in paginas):
+        raise InvalidPDFError("Não foi possível extrair texto do PDF.")
+
     documents = []
-
-    for page in doc:
-        paginas.append({
-            "page": page.number + 1,
-            "text": page.get_text()
-    })
 
     for page in paginas:
             document = Document(
